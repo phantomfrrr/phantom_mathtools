@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Academic Resource Center</title>
+    <style>
+        body { font-family: sans-serif; background: #f4f4f4; text-align: center; padding: 50px; }
+        .box { background: white; padding: 20px; border-radius: 8px; display: inline-block; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        input { padding: 10px; width: 300px; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Student Research Database</h1>
+        <p>Enter a scholarly URL or search term to begin your research.</p>
+        <form id="proxy-form">
+            <input type="text" id="url-input" placeholder="Search JSTOR, Britannica, etc...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <script src="/uv/uv.bundle.js"></script>
+    <script src="/uv/uv.config.js"></script>
+    <script>
+        document.getElementById('proxy-form').onsubmit = async (e) => {
+            e.preventDefault();
+            const url = document.getElementById('url-input').value;
+            // Basic logic to register Service Worker and redirect
+            window.navigator.serviceWorker.register('./sw.js', {
+                scope: __uv$config.prefix
+            }).then(() => {
+                location.href = __uv$config.prefix + __uv$config.encodeUrl(url);
+            });
+        };
+    </script>
+</body>
+</html>
