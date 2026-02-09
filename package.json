@@ -1,0 +1,14 @@
+{
+  "name": "educational-resource-portal",
+  "version": "1.0.0",
+  "description": "A student resource portal for academic research.",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "dependencies": {
+    "@tomphttp/bare-server-node": "^2.0.1",
+    "@titaniumnetwork-dev/ultraviolet": "^3.0.0",
+    "express": "^4.18.2"
+  }
+}
